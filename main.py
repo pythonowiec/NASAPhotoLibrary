@@ -27,14 +27,14 @@ while True:
         file.close()
         print('File created successful')
 
-    if(option == 'delete'):
-        if os.path.exists('functions/index.html'):
-            os.remove('functions/index.html')
+    elif(option == 'delete'):
+        if os.path.exists('index.html'):
+            os.remove('index.html')
             print('File deleted successful')
         else:
             print('The file does not exist''')
 
-    if(option == 'download'):
+    elif(option == 'download'):
         options = options_functions.loadOptions()
         date = datetime.datetime(int(options['date'][2]), int(options['date'][1]), int(options['date'][0]))
         rover = options['rover']
@@ -42,8 +42,13 @@ while True:
         downloader.createGallery(data)
         print('Take a look at index.html')
 
-    if(option == 'options'):
+    elif(option == 'options'):
+        op = options_functions.loadOptions()
+        print('Your options: ')
+        print(f'<-  {op["date"][0]}.{op["date"][1]}.{op["date"][2]}')
+        print('<- ', op['rover'])
         options_functions.saveOptions()
+        print('Saved')
     else:
         print("Command doesn't exist")
 
