@@ -10,17 +10,15 @@ def getImage(date, rover, API_KEY):
 def createGallery(data):
     file = open('index.html', 'r')
     soup = bs4.BeautifulSoup(file.read(), features="html.parser")
-
+    body = soup.body
+    body.clear()
     for photo in data["photos"]:
         new_image = soup.new_tag('img', src=photo["img_src"], width=1000, height=1000)
-
-        soup.body.append(new_image)
+        body.append(new_image)
 
     file = open('index.html', 'w')
     file.write(str(soup))
     file.close()
-
-    print('Something went wrong')
 
 
 
