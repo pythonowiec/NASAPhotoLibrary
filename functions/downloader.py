@@ -8,12 +8,23 @@ def getImage(date, rover, API_KEY):
     return data
 
 def createGallery(data):
+    html_doc = """<html>
+                <head>
+                    <title>NASA gallery</title>
+                </head>
+                <body>
+                </body>
+        </html>
+            """
+    file = open('index.html', 'w+')
+    file.write(html_doc)
+    file.close()
     file = open('index.html', 'r')
     soup = bs4.BeautifulSoup(file.read(), features="html.parser")
     body = soup.body
     body.clear()
     for photo in data["photos"]:
-        new_image = soup.new_tag('img', src=photo["img_src"], width=1000, height=1000)
+        new_image = soup.new_tag('img', src=photo["img_src"], width='70%', height='auto')
         body.append(new_image)
 
     file = open('index.html', 'w')

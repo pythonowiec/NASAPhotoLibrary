@@ -13,21 +13,7 @@ while True:
         """)
     option = input("-> ")
 
-    if(option == 'create'):
-        html_doc = """<html>
-            <head>
-                <title>Mars</title>
-            </head>
-            <body>
-            </body>
-    </html>
-        """
-        file = open('index.html', 'w+')
-        file.write(html_doc)
-        file.close()
-        print('File created successful')
-
-    elif(option == 'delete'):
+    if(option == 'delete'):
         if os.path.exists('index.html'):
             os.remove('index.html')
             print('File deleted successful')
@@ -45,7 +31,7 @@ while True:
     elif(option == 'options'):
         op = options_functions.loadOptions()
         print('Your options: ')
-        print(f'<-  {op["date"][0]}.{op["date"][1]}.{op["date"][2]}')
+        print(f'<-  {op["date"][0]}.{op["date"][1]}.{op["date"][2]}' if op["date"] else '<-')
         print('<- ', op['rover'])
         options_functions.saveOptions()
         print('Saved')
